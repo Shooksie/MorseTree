@@ -21,6 +21,7 @@ public:
 	void addNode(string code, string data);
 	void setUp();
 	void readFrom(string fileinput);
+	void decode(string toDecrypt);
 	string findNode(string code);
 	
 };
