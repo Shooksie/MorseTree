@@ -6,17 +6,25 @@ using namespace std;
 
 void main() {
 
-	map<char, string> morseMap;
+	map<string, string> morseMap;
 
-	char letter;
+	string line;
+	string letter;
 	string code;
 
 	ifstream fin("text.txt");
 	ofstream fout("output.txt");
 
-	while (fin >> letter) {
-		fin >> code;
-		morseMap.insert(pair<char, string>(letter, code));
+	while (fin >> line) {
+		if (!code.empty()) {
+			code.clear();
+		}
+
+		letter = line.front();
+		for (int i = 1; i < line.size(); i++) {
+			code += line[i];
+		}
+		morseMap.insert(pair<string, string>(letter, code));
 	}
 
 
