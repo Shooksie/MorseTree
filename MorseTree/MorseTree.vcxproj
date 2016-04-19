@@ -146,15 +146,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Binary_Search_Tree.h" />
-    <ClInclude Include="Binary_Tree.h" />
-    <ClInclude Include="BTNode.h" />
     <ClInclude Include="MorseTree.h" />
     <ClInclude Include="String_Tokenizer.h" />
     <ClInclude Include="Syntax_Error.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BinaryTreeApp.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MoreseTree.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="text.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

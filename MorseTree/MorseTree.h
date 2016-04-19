@@ -1,20 +1,26 @@
 #pragma once
 #include <string>
-#include "Binary_Search_Tree.h"
 #include <map>
-
+#include <vector>
+#include <fstream>
 using namespace std;
 
 class MorseTree {
 private:
-	vector<string>* morse;
-	vector<string> binaryMorse;
-	map<string, string> alphabet;
-	Binary_Search_Tree<int> binaryData;
+	typedef struct morseNode {
+		string data = "0";
+		morseNode* right=NULL;
+		morseNode* left=NULL;
+		morseNode* parent;
+	}*link;
+	link root;
+	link curr;
+	map<string, string> morseMap;
+	vector<string> alpha;
 public:
-	void addMorse(vector<string>* morse1) { morse = morse1; };
-	void convertToBinary();
-	void encrypt(string word);
-	void decrypt(string morse);
+	void addNode(string code, string data);
+	void setUp();
+	void readFrom(string fileinput);
+	string findNode(string code);
 	
 };
