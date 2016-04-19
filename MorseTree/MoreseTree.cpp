@@ -1,4 +1,6 @@
 #include "MorseTree.h"
+#include "String_Tokenizer.h"
+#include "Syntax_Error.h"
 #include <iostream>
 using namespace std;
 
@@ -6,7 +8,6 @@ void MorseTree::addNode(string code, string word) {
 	string::iterator itr;
 	string codes = "._";
 	for (itr = code.begin(); itr != code.end(); itr++) {
-		cout << *itr;
 		if (*itr == codes[1]) {
 			if (curr->right == NULL) {
 				curr->right = new morseNode;
@@ -68,5 +69,14 @@ void MorseTree::setUp(){
 		curr = root;
 		addNode(morseMap[alpha[i]], alpha[i]);
 	}
-	system("pause");
+}
+
+void MorseTree::decode(string toDecrypt) {
+	string_tokenizer ST(toDecrypt, " ");
+	while (ST.has_more_tokens()) {
+		string bit = ST.next_token();
+		cout << findNode(bit);
+	}
+
+	cout << endl << endl;
 }
