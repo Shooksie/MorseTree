@@ -1,0 +1,26 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <map>
+using namespace std;
+
+void main() {
+
+	map<char, string> morseMap;
+
+	char letter;
+	string code;
+
+	ifstream fin("text.txt");
+	ofstream fout("output.txt");
+
+	while (fin >> letter) {
+		fin >> code;
+		morseMap.insert(pair<char, string>(letter, code));
+	}
+
+
+
+	system("pause");
+	return;
+}
