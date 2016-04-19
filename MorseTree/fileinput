@@ -13,7 +13,6 @@ void main() {
 	string code;
 
 	ifstream fin("text.txt");
-	ofstream fout("output.txt");
 
 	while (fin >> line) {
 		if (!code.empty()) {
