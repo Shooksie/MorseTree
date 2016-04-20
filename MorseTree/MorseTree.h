@@ -15,13 +15,14 @@ private:
 	}*link;
 	link root;
 	link curr;
-	map<string, string> morseMap;
-	vector<string> alpha;
+	map<char, string> morseMap;
+	vector<char> alpha;
 public:
-	void addNode(string code, string data);
+	void addNode(string code, char data);
 	void setUp();
 	void readFrom(string fileinput);
 	void decode(string toDecrypt);
+	void encode(string toEncrypt);
 	string findNode(string code);
 	
 };
