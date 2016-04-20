@@ -50,6 +50,7 @@ void MorseTree::readFrom(string input) {
 	while (fin >> letter) {
 		fin >> code;
 		morseMap.insert(pair<char, string>(letter, code));
+		// add node to make quicker.. 
 		alpha.push_back(letter);
 	}
 }
@@ -64,28 +65,31 @@ void MorseTree::setUp(){
 	}
 }
 
-void MorseTree::decode(string toDecrypt) {
+string MorseTree::decode(string toDecrypt) {
+	string code;
 	string_tokenizer ST(toDecrypt, " ");
 	while (ST.has_more_tokens()) {
 		string bit = ST.next_token();
-		cout << findNode(bit);
+		code += findNode(bit);
 	}
 
-	cout << endl << endl;
+	return code;
 }
 
-void MorseTree::encode(string toEncrypt) {
+string MorseTree::encode(string toEncrypt) {
 
 
+	string code;
 	map<char, string> ::iterator mapitr;
 
 	for (int i = 0; i < toEncrypt.size(); i++) {
 		for (mapitr = morseMap.begin(); mapitr != morseMap.end(); mapitr++) {
 			if (toEncrypt[i] == mapitr->first) {
-				cout << mapitr->second << " ";
+				code+=  mapitr->second + " ";
+				// have a const variable instead of a " " for space
 
 			}
 		}
 	}
-	cout << endl << endl;
+	return code;
 }
