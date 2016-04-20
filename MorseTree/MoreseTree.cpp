@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 
-void MorseTree::addNode(string code, string word) {
+void MorseTree::addNode(string code, char word) {
 	string::iterator itr;
 	string codes = "._";
 	for (itr = code.begin(); itr != code.end(); itr++) {
@@ -41,24 +41,17 @@ string MorseTree::findNode(string code) {
 	return curr->data;
 }
 void MorseTree::readFrom(string input) {
-	string line;
-	string letter;
+
+	char letter;
 	string code;
 
 	ifstream fin((input + ".txt"));
 
-	while (fin >> line) {
-		if (!code.empty()) {
-			code.clear();
-		}
-		letter = line.front();
-		for (int i = 1; i < line.size(); i++) {
-			code += line[i];
-		}
-		morseMap.insert(pair<string, string>(letter, code));
+	while (fin >> letter) {
+		fin >> code;
+		morseMap.insert(pair<char, string>(letter, code));
 		alpha.push_back(letter);
 	}
-
 }
 void MorseTree::setUp(){
 	readFrom("text");
@@ -78,5 +71,21 @@ void MorseTree::decode(string toDecrypt) {
 		cout << findNode(bit);
 	}
 
+	cout << endl << endl;
+}
+
+void MorseTree::encode(string toEncrypt) {
+
+
+	map<char, string> ::iterator mapitr;
+
+	for (int i = 0; i < toEncrypt.size(); i++) {
+		for (mapitr = morseMap.begin(); mapitr != morseMap.end(); mapitr++) {
+			if (toEncrypt[i] == mapitr->first) {
+				cout << mapitr->second << " ";
+
+			}
+		}
+	}
 	cout << endl << endl;
 }
