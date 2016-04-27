@@ -61,7 +61,7 @@ void MorseTree::setUp(){
 
 string MorseTree::decode(string toDecrypt) {
 	string code;
-	string_tokenizer ST(toDecrypt, " ");
+	string_tokenizer ST(toDecrypt, space);
 	while (ST.has_more_tokens()) {
 		string bit = ST.next_token();
 		code += findNode(bit);
@@ -79,7 +79,7 @@ string MorseTree::encode(string toEncrypt) {
 	for (int i = 0; i < toEncrypt.size(); i++) {
 		for (mapitr = morseMap.begin(); mapitr != morseMap.end(); mapitr++) {
 			if (toEncrypt[i] == mapitr->first) {
-				code+=  mapitr->second + " ";
+				code+=  mapitr->second + space;
 				// have a const variable instead of a " " for space
 
 			}
