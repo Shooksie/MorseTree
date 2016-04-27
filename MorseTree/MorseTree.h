@@ -17,14 +17,14 @@ private:
 	link root;
 	link curr;
 	map<char, string> morseMap;
-	vector<char> alpha;
+	bool successful = true;
 public:
+	bool getSuccess() { return successful; }
 	void addNode(string code, char data);
 	void setUp();
 	void readFrom(string fileinput);
 	string decode(string toDecrypt);
 	string encode(string toEncrypt);
 	string findNode(string code);
-	string tokenize(string toToken);
 	
 };
