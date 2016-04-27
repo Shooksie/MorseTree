@@ -24,5 +24,6 @@ public:
 	string decode(string toDecrypt);
 	string encode(string toEncrypt);
 	string findNode(string code);
+	string tokenize(string toToken);
 	
 };

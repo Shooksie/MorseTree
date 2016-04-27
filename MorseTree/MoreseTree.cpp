@@ -48,8 +48,8 @@ void MorseTree::readFrom(string input) {
 	ifstream fin((input + ".txt"));
 	root = new morseNode;
 	while (fin >> letter) {
-		curr = root;
 		fin >> code;
+		curr = root;
 		morseMap.insert(pair<char, string>(letter, code));
 		// add node to make quicker..
 		addNode(code, letter);
@@ -61,25 +61,27 @@ void MorseTree::setUp(){
 
 string MorseTree::decode(string toDecrypt) {
 	string code;
-	string_tokenizer ST(toDecrypt, " ");
-	while (ST.has_more_tokens()) {
-		string bit = ST.next_token();
-		code += findNode(bit);
-	}
-
+	code += findNode(toDecrypt);
 	return code;
 }
 
+string MorseTree::tokenize(string toToken) {
+	string code;
+	string_tokenizer ST(toToken, " ");
+	while (ST.has_more_tokens()) {
+		string bit = ST.next_token();
+		code +=decode(bit);
+	}
+	return code;
+}
 string MorseTree::encode(string toEncrypt) {
 
-
+	
 	string code;
-	map<char, string> ::iterator mapitr;
-
 	for (int i = 0; i < toEncrypt.size(); i++) {
-		for (mapitr = morseMap.begin(); mapitr != morseMap.end(); mapitr++) {
-			if (toEncrypt[i] == mapitr->first) {
-				code+=  mapitr->second + " ";
+		for (int x = 0; x < alpha.size(); x++) {
+			if (toEncrypt[i] == alpha[x]) {
+				code+= morseMap[alpha[x]] + " ";
 				// have a const variable instead of a " " for space
 
 			}
