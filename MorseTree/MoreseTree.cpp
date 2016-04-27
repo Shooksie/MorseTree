@@ -76,12 +76,14 @@ string MorseTree::tokenize(string toToken) {
 }
 string MorseTree::encode(string toEncrypt) {
 
-	
+
 	string code;
+	map<char, string> ::iterator mapitr;
+
 	for (int i = 0; i < toEncrypt.size(); i++) {
-		for (int x = 0; x < alpha.size(); x++) {
-			if (toEncrypt[i] == alpha[x]) {
-				code+= morseMap[alpha[x]] + " ";
+		for (mapitr = morseMap.begin(); mapitr != morseMap.end(); mapitr++) {
+			if (toEncrypt[i] == mapitr->first) {
+				code += mapitr->second + space;
 				// have a const variable instead of a " " for space
 
 			}

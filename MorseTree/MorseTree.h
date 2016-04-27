@@ -7,6 +7,7 @@ using namespace std;
 
 class MorseTree {
 private:
+	const char space = ' ';
 	typedef struct morseNode {
 		string data = "0";
 		morseNode* right=NULL;
