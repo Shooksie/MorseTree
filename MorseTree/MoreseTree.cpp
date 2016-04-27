@@ -67,7 +67,7 @@ string MorseTree::decode(string toDecrypt) {
 
 string MorseTree::tokenize(string toToken) {
 	string code;
-	string_tokenizer ST(toToken, space);
+	string_tokenizer ST(toToken, " ");
 	while (ST.has_more_tokens()) {
 		string bit = ST.next_token();
 		code +=decode(bit);
