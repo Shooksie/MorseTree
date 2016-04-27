@@ -46,23 +46,17 @@ void MorseTree::readFrom(string input) {
 	string code;
 
 	ifstream fin((input + ".txt"));
-
+	root = new morseNode;
 	while (fin >> letter) {
+		curr = root;
 		fin >> code;
 		morseMap.insert(pair<char, string>(letter, code));
-		// add node to make quicker.. 
-		alpha.push_back(letter);
+		// add node to make quicker..
+		addNode(code, letter);
 	}
 }
 void MorseTree::setUp(){
 	readFrom("text");
-	
-	root = new morseNode;
-	root->right = NULL;
-	for (int i = 0; i < alpha.size(); i++) {
-		curr = root;
-		addNode(morseMap[alpha[i]], alpha[i]);
-	}
 }
 
 string MorseTree::decode(string toDecrypt) {
