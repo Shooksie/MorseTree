@@ -17,7 +17,7 @@ private:
 	link curr;
 	map<char, string> morseMap;
 	vector<char> alpha;
-	const string = " ";
+	const string space = " ";
 public:
 	void addNode(string code, char data);
 	void setUp();
