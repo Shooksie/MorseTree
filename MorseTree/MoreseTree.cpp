@@ -22,10 +22,16 @@ void MorseTree::addNode(string code, char word) {
 			}
 			curr = curr->left;
 		}
+		else {
+			cout << "Invalid Symbol.  Cannot Build Morse Tree." << endl << endl;
+			successful = false;
+			return;
+		}
 	}
 	curr->data = word;
 }
 string MorseTree::findNode(string code) {
+	bool found = true;
 	curr = root;
 	string::iterator itr;
 	string codes = "._";
@@ -36,9 +42,14 @@ string MorseTree::findNode(string code) {
 		else if (*itr == codes[0]) {
 			curr = curr->left;
 		}
+		else
+			found = false;
 
 	}
-	return curr->data;
+	if (found)
+		return curr->data;
+	else
+		return "Invalid Path.  Cannot Find Node";
 }
 void MorseTree::readFrom(string input) {
 
@@ -61,7 +72,13 @@ void MorseTree::setUp(){
 
 string MorseTree::decode(string toDecrypt) {
 	string code;
-	code += findNode(toDecrypt);
+	if (findNode(bit) != "Invalid Path.  Cannot Find Node")
+		code += findNode(bit);
+	else {
+		code = "Invalid Path.  Cannot Find Node";
+		break;
+	}
+
 	return code;
 }
 
@@ -76,18 +93,22 @@ string MorseTree::tokenize(string toToken) {
 }
 string MorseTree::encode(string toEncrypt) {
 
-
+	bool found;
 	string code;
 	map<char, string> ::iterator mapitr;
 
 	for (int i = 0; i < toEncrypt.size(); i++) {
+		found = false;
 		for (mapitr = morseMap.begin(); mapitr != morseMap.end(); mapitr++) {
 			if (toEncrypt[i] == mapitr->first) {
 				code += mapitr->second + space;
+				found = true;
 				// have a const variable instead of a " " for space
 
 			}
 		}
+		if (!found)
+			return 	"Invalid Node. Cannot Find Code";
 	}
 	return code;
 }
